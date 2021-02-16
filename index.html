@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pioneer-bank</title>
+    <!-- Bootstrap linked css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- CSS file added  -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google fonts use -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+    <div id="all-login">
+        <h2 class="text-center">Welcome to Pioneer Bank</h2>
+        <h4 id="name">Login Form</h4>
+        <div class="input-section shadow-lg p-3 mb-5 bg-white rounded">
+
+            <!-- image add -->
+             <div class="image-container">
+                 <img id="image-fix" src="images/login2.png" alt="this is an image ">
+             </div>
+
+             <!-- login input create -->
+             <div class="container">
+                 <label for="uname"><b>Username</b></label>
+                 <input type="text" placeholder="Enter Username" name="uname" required>
+                 <label for="psw"><b>Password</b></label>
+                 <input type="password" placeholder="Enter Password" name="psw" required>
+
+                 
+                 
+                 <button type="submit" class="sub" id="login"><b id="color">Login</b></button>
+                 <br>
+                 <label>
+                    <input type="checkbox" checked="checked" name="remember"> <b> Remember me</b>
+                  </label>
+
+
+                  <!-- cancel and forget button add -->
+                  <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="cancelbtn btn btn-danger">Cancel</button>
+                    <span class="psw"> <b>Forgot</b> <a href="#">password?</a></span>
+                  </div>
+
+
+             </div>
+
+        </div>
+
+    </div>
+
+    
+    <div id="transaction-area">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="currentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                  
+                    <input id="depositAmount" type="text" class="form-control" placeholder="$ amount you want to deposit">
+                    <br>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button id="addWithdraw" class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // login button event handler
+        const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", function(){
+            const loginArea = document.getElementById("all-login");
+            loginArea.style.display = "none";
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display = "block";
+        })
+
+        //deposit button event 
+        document.getElementById("addDeposit").addEventListener("click",function(){
+             const depositAmount = document.getElementById("depositAmount").value;
+             const depositBalance = parseFloat(depositAmount);
+
+             const currentDeposit = document.getElementById("currentDeposit").innerText;
+             const currentDepositBalance = parseFloat(currentDeposit);
+             const totalDeposit = depositBalance + currentDepositBalance;
+
+
+             document.getElementById("currentDeposit").innerText = totalDeposit;
+             
+             
+
+             //Balance handle
+             const current = document.getElementById("currentBalance").innerText;
+             const currentBalanceNum = parseFloat(current);
+             const totalBalance =  depositBalance + currentBalanceNum;
+             document.getElementById("currentBalance").innerText = totalBalance;
+             document.getElementById("depositAmount").value = "";
+
+              
+        })
+
+
+    </script>
+</body>
+</html>
