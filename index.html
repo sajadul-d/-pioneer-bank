@@ -108,28 +108,44 @@
         })
 
         //deposit button event 
-        document.getElementById("addDeposit").addEventListener("click",function(){
-             const depositAmount = document.getElementById("depositAmount").value;
-             const depositBalance = parseFloat(depositAmount);
+               document.getElementById("addDeposit").addEventListener("click",function(){
+               const depositBalance = inputNumber("depositAmount"); 
 
-             const currentDeposit = document.getElementById("currentDeposit").innerText;
-             const currentDepositBalance = parseFloat(currentDeposit);
-             const totalDeposit = depositBalance + currentDepositBalance;
+            
+            DepositWithdrawHandle( "currentDeposit",depositBalance); 
+            DepositWithdrawHandle("currentBalance",depositBalance);
+            
+        });
+            //withdraw button event handle
+               document.getElementById("addWithdraw").addEventListener("click",function(){
+               const withdrawBalance = inputNumber("withdrawAmount");
+               DepositWithdrawHandle( "currentWithdraw",withdrawBalance); 
+               DepositWithdrawHandle("currentBalance", -1 * withdrawBalance);
 
+               document.getElementById("withdrawAmount").value = ""; 
+                
+            }); 
+            
+            //function declare for input number
+            function inputNumber(id){
+                const withdrawAmount = document.getElementById(id).value;
+                const withdrawBalance = parseFloat(withdrawAmount); 
+                return withdrawBalance;
+            }
 
-             document.getElementById("currentDeposit").innerText = totalDeposit;
-             
-             
+            
 
-             //Balance handle
-             const current = document.getElementById("currentBalance").innerText;
-             const currentBalanceNum = parseFloat(current);
-             const totalBalance =  depositBalance + currentBalanceNum;
-             document.getElementById("currentBalance").innerText = totalBalance;
-             document.getElementById("depositAmount").value = "";
+               //function declare for deposit and withdraw button handle
+               function DepositWithdrawHandle(id,depositBalance){
 
+                const current = document.getElementById(id).innerText;
+                const currentNum = parseFloat(current);
+                const total =  depositBalance + currentNum;
+                document.getElementById(id).innerText = total;
+                document.getElementById("depositAmount").value = "";
+            }
               
-        })
+    
 
 
     </script>
