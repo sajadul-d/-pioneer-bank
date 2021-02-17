@@ -120,17 +120,24 @@
                document.getElementById("addWithdraw").addEventListener("click",function(){
                const withdrawBalance = inputNumber("withdrawAmount");
                DepositWithdrawHandle( "currentWithdraw",withdrawBalance); 
+               
                DepositWithdrawHandle("currentBalance", -1 * withdrawBalance);
+               if(parseFloat(document.getElementById("currentBalance").innerText) <0 )
+               {
+                   alert("Sorry!Your Current Balance is Less than you want to withdraw");
+               }
 
                document.getElementById("withdrawAmount").value = ""; 
+             
+            
                 
             }); 
             
             //function declare for input number
             function inputNumber(id){
-                const withdrawAmount = document.getElementById(id).value;
-                const withdrawBalance = parseFloat(withdrawAmount); 
-                return withdrawBalance;
+                const Amount = document.getElementById(id).value;
+                const Balance = parseFloat(Amount); 
+                return Balance;
             }
 
             
